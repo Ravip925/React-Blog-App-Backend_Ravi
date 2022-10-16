@@ -1,0 +1,13 @@
+
+body{
+  background-image: url("/public/images/luke-chesser-PHtp0cDBJSM-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+}
+.App {
+  text-align: center;
+}
+
+
+
