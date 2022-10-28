@@ -3,15 +3,21 @@ import "./Compo.css";
 import { useLayoutEffect, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 const BlogDetail = () => {
   const [data, setData] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("https://react-blog-app-backend-ravi.herokuapp.com/api/home")
-    .then(response => response.json())
-    .then(data => setData(data))
-  },[])
+    const getData = async () => {
+      await fetch("https://react-blog-app-backend-ravi.herokuapp.com/api/home")
+        .then((response) => response.json())
+        .then((data) => setData(data));
+      setLoading(true);
+    };
+    getData();
+  }, []);
 
 
   const { id } = useParams();
@@ -24,7 +30,10 @@ const BlogDetail = () => {
 
   return (
     <div>
-      <center className="full-center">
+      {
+        loading ? 
+        <>
+          <center className="full-center">
         <h2 id="detail-title">{blog.title}</h2>
         <img src={blog.image} alt="cover" className="full-img" />
         <h6 className="full-date">
@@ -37,7 +46,7 @@ const BlogDetail = () => {
 
       <h2 className="bottom-h2">Read More From {blog.category}</h2>
       <div className="highlight"></div>
-      {data && data
+      {data
         .filter((data) => data.category === blog.category)
         .map(
           (data, index) =>
@@ -54,6 +63,14 @@ const BlogDetail = () => {
               </div>
             )
         )}
+        </>
+        :
+        <center>
+          <br /><br /><br /><br />
+          <Spinner animation="border" variant="danger" /><br /><br />
+          <h3>Loading...</h3>
+        </center>
+      }
     </div>
   );
 };

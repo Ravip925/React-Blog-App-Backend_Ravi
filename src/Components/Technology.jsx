@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Bollywood.css";
 import { useLayoutEffect } from "react";
+import Spinner from 'react-bootstrap/Spinner';
 
 const Technology = () => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("https://react-blog-app-backend-ravi.herokuapp.com/api/home")
-    .then(response => response.json())
-    .then(data => setData(data))
-  },[])
+    const getData = async () => {
+      await fetch("https://react-blog-app-backend-ravi.herokuapp.com/api/home")
+        .then((response) => response.json())
+        .then((data) => setData(data));
+      setLoading(true);
+    };
+    getData();
+  }, []);
 
   const x = [19, 29, 39, 49, 9];
 
@@ -20,10 +26,13 @@ const Technology = () => {
 
   return (
     <div id="main" className="main">
-      <h2 className="h2-1">Technology</h2>
+      {
+        loading ? 
+        <>
+          <h2 className="h2-1">Technology</h2>
       <hr className="hr-1" />
 
-      {data && data
+      {data
         .filter((data) => data.category === "Technology")
         .map((data, index) => (
           <div key={index} className="bolly-page">
@@ -40,7 +49,7 @@ const Technology = () => {
       <aside id="aside-b">
         <h2 className="h2-2">Top Stories</h2>
         <hr className="hr-2" />
-        {data && data
+        {data
           .filter((data) => x.includes(data.id))
           .map(
             (data, index) =>
@@ -65,6 +74,14 @@ const Technology = () => {
       <div id="footer-page" className="footer">
         <small>Copyright &copy; Ravichandra Patil</small>
       </div>
+    
+        </>
+        :
+        <center>
+          <Spinner animation="border" variant="danger" /><br /><br />
+          <h3>Loading...</h3>
+        </center>
+      }
     </div>
   );
 };
