@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Bollywood.css";
 import { useLayoutEffect } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const Bollywood = () => {
   const [data, setData] = useState([]);
@@ -70,9 +70,9 @@ const Bollywood = () => {
                     </div>
                   )
               )}
-            <div className="ad">
-              <strong>Advertisement</strong>
-            </div>
+            <a href="https://www.mcdonaldsindia.com/">
+              <div className="ad"></div>
+            </a>
           </aside>
           <div id="footer-page" className="footer">
             <small>Copyright &copy; Ravichandra Patil</small>
@@ -80,7 +80,9 @@ const Bollywood = () => {
         </>
       ) : (
         <center>
-          <Spinner animation="border" variant="danger" /><br /><br />
+          <Spinner animation="border" variant="danger" />
+          <br />
+          <br />
           <h3>Loading...</h3>
         </center>
       )}

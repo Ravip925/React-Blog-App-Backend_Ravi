@@ -146,7 +146,7 @@ const Home = () => {
                 )}
             </aside>
           </div>
-          <div id="home-ad1"></div>
+          <a href="https://ads.google.com/intl/en_us/home/#!/"><div id="home-ad1"></div></a>
 
           <div id="footer-home" className="footer">
             <small>Copyright &copy; Ravichandra Patil</small>
