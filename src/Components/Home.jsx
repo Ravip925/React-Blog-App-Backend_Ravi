@@ -73,7 +73,7 @@ const Home = () => {
                           <img src={data.image} alt="cover" className="img-1" />
                           <p className="div-1-title">{data.title}</p>
                           <p className="div-1-date">
-                            {data.category} <br /> {data.date}
+                            <strong>{data.category}</strong> <br /> {data.date}
                           </p>
                           <hr id="hr-mid" className="hr1" />
                         </div>
