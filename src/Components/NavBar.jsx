@@ -1,8 +1,22 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Compo.css";
 
 const NavBar = () => {
+  const [toggle, setToggle] = useState(false)
+
+  const handleToggle = ()=>{
+    setToggle(!toggle);
+  }
+
+  const toggleClass = toggle ? "active" : null;
+
+  document.onclick = function(e){
+    if(e.target.id !== "sidebar" && e.target.id !== "toggle"){
+      setToggle(false)
+    }
+  }
 
   return (
     <nav>
@@ -34,47 +48,45 @@ const NavBar = () => {
         <div id="indicator"></div>
       </div>
 
+
+      {/* For Mobile Sidebar */}
+
       <div className="nav">
-        <nav className="slideNav" role="navigation">
-          <div id="menuToggle">
-            <input className="input" type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-              <li>
-                <Link className="a1" to="/">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link className="a1" to="/category/bollywood">
-                  Bollywood
-                </Link>
-              </li>
-              <li>
-                <Link className="a1" to="/category/technology">
-                  Technology
-                </Link>
-              </li>
-              <li>
-                <Link className="a1" to="/category/hollywood">
-                  Hollywood
-                </Link>
-              </li>
-              <li>
-                <Link className="a1" to="/category/fitness">
-                  Fitness
-                </Link>
-              </li>
-              <li>
-                <Link className="a1" to="/category/food">
-                  Food
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <div onClick={handleToggle} id="toggle" className={toggleClass}></div>
+        <div id="sidebar" className={toggleClass}>
+          <ul>
+            <li>
+              <Link className="a1" to="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="a1" to="/category/bollywood">
+                Bollywood
+              </Link>
+            </li>
+            <li>
+              <Link className="a1" to="/category/technology">
+                Technology
+              </Link>
+            </li>
+            <li>
+              <Link className="a1" to="/category/hollywood">
+                Hollywood
+              </Link>
+            </li>
+            <li>
+              <Link className="a1" to="/category/fitness">
+                Fitness
+              </Link>
+            </li>
+            <li>
+              <Link className="a1" to="/category/food">
+                Food
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

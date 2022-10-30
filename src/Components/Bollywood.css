@@ -4,6 +4,7 @@
 
 .bolly-page{
     position: relative;
+    overflow: hidden;
     background-color: rgb(250, 215, 215);
     width: 60vw;
     height: 250px;
