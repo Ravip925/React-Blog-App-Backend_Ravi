@@ -11,7 +11,7 @@ const BlogDetail = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await fetch("https://react-blog-app-backend-ravi.herokuapp.com/api/home")
+      await fetch("https://react-blog-app-backend-git-main-ravip925.vercel.app/api/home")
         .then((response) => response.json())
         .then((data) => setData(data));
       setLoading(true);
